@@ -1,22 +1,49 @@
-#include<bits\stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-class Solution {
-public:
-    void han(vector<int>& A, vector<int>& B, vector<int>& C,int n){
-        if(n==1){
-            C.push_back(A.back());
-            A.pop_back();
-            return;
+using ll=long long;
+void solve(){
+    int n;
+    cin>>n;
+    vector<vector<int>>v(n,vector<int>(n));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>v[i][j];
         }
-        han(A,C,B,n-1);
-        C.push_back(A.back());
-        A.pop_back();
-        han(B,A,C,n-1);
     }
-    void hanota(vector<int>& A, vector<int>& B, vector<int>& C) {
-       han(A,B,C,A.size());
+    int maxnum=1e5;
+    ll ans=0;
+    for(int j=0;j<n;j++){
+        int x=0;
+        int y=j;
+        while(x<n&&y<n){
+            maxnum=min(maxnum,v[x][y]);
+            y++;
+            x++;
+        }
+        if(maxnum<0)
+        ans+=-1*maxnum;
+        maxnum=1e5;
     }
-};
+    maxnum=1e5;
+    for(int i=1;i<n;i++){
+        int x=i;
+        int y=0;
+        while(x<n&&y<n){
+            maxnum=min(maxnum,v[x][y]);
+            y++;
+            x++;
+        }
+       if(maxnum<0)
+        ans+=-1*maxnum;
+        maxnum=1e5;
+    }
+   cout<<ans<<endl;
+   
+}
 int main(){
-    return 0;
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
 }
