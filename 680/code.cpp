@@ -5,8 +5,8 @@ public:
     bool judment(string s,int left,int right){
         while(left<right){
             if(s[right]==s[left]){
-                right++;
-                left--;
+                right--;
+                left++;
             }
             else{
                 return false;
